@@ -96,6 +96,9 @@ def start():
         makePhoto()
     else:
         messagebox.showinfo("Error", "No Output/Input File!")
+		
+def help():
+	messagebox.showinfo("Help!", "Follow the instructions and press the begin button.")
 
 top_frame = tk.Frame(master)
 bottom_frame = tk.Frame(master)
@@ -105,7 +108,8 @@ line = tk.Frame(master, height=1, width=400, bg="grey80", relief='groove')
 top_frame.pack(side=tk.TOP)
 line.pack(pady=10)
 bottom_frame.pack(side=tk.BOTTOM)	
-	
+
+
 	
 
 input_path = tk.Label(top_frame, text="Picture path:")
@@ -139,7 +143,9 @@ imageLabel = tk.Label(bottom_frame, text="URL To Image")
 imageURL = tk.Entry(bottom_frame, text="",width=40)
 imageButton = tk.Button(bottom_frame, text="Download Image:", command=getUrlImage)
 
-help_button = tk.Button(bottom_frame, text = "Help!")
+help_button = tk.Button(bottom_frame, text = "Help!", command = help)
+
+
 begin_button = tk.Button(bottom_frame, text='Begin!',command=start) #beginButton	
 
 top_frame.pack(side=tk.TOP)

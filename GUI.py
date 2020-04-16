@@ -11,6 +11,7 @@ outputPath = ''# Global variable to store outputPath
 filter = '0'
 master = tk.Tk()
 master.title("Primitive")
+root = Tk()
 
 def input():
     input_path = tk.filedialog.askopenfilename()
@@ -151,9 +152,12 @@ input_path = tk.Label(top_frame, text="Picture path:")
 input_entry = tk.Entry(top_frame, text="", width=40)
 browse1 = tk.Button(top_frame, text="Browse", command=input)
 
-output_path = tk.Label(bottom_frame, text="Output Path:")
-output_entry = tk.Entry(bottom_frame, text="", width=40)
-browse2 = tk.Button(bottom_frame, text="Browse", command=output)
+output_path = tk.Label(top_frame, text="Output Path:")
+output_entry = tk.Entry(top_frame, text="", width=40)
+browse2 = tk.Button(top_frame, text="Browse", command=output)
+
+#output_path = tk.Label(root, text="Output Path:")
+#output_path.grid(row=0, column=2)
 
 
 # mode option

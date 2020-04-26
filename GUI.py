@@ -1,6 +1,7 @@
 import tkinter.filedialog as filedialog
 import tkinter.font as font
 import tkinter as tk
+from tkinter import ttk 
 import os
 import utils as util
 from tkinter import messagebox
@@ -228,9 +229,11 @@ imageButton.grid(row=2, column=2, padx = 10, pady = 20)
 
 ######################## primitive arguments frame ########################
 modeLabel = tk.Label(primitive_frame, text="Mode:")
+mode_OpMenu_width = len(max(MODES,key=len))#length of largest item in MODES
 selectedMode = StringVar(master)
-selectedMode.set(MODES[1])
-modeOptions = OptionMenu(primitive_frame,selectedMode, "Combo", "Triangle", "Rectangle", "Ellipse", "Circle", "Rotated Rectangle", "Beziers", "Rotated Ellipse", "Polygon")
+selectedMode.set(MODES[0])
+modeOptions = OptionMenu(primitive_frame,selectedMode,'Combo',*MODES)#minor change for option menu fill
+modeOptions.config(width=mode_OpMenu_width)#set width to length of largest item
 selectedMode.trace("w", getModeOption)
 
 numberOfShapesLabel = tk.Label(primitive_frame, text="Number of Shapes:")
@@ -246,9 +249,11 @@ workerEntry = tk.Entry(primitive_frame, width=10)
 workerEntry.insert(0, "0")
 
 filterLabel = tk.Label(primitive_frame, text="Filter:")
+filt_OpMenu_width = len(max(FILTERS,key=len))#length of largest item in FILTERS
 selectedFilter = StringVar(master)
 selectedFilter.set(FILTERS[0])
-filterOptions = OptionMenu(primitive_frame,selectedFilter, "None", "Gray Scale", "Sepia", "Negative")
+filterOptions = OptionMenu(primitive_frame,selectedFilter,'None',*FILTERS)#minor change for option menu fill
+filterOptions.config(width=filt_OpMenu_width)#set width to length of largest item
 selectedFilter.trace("w", getFilterOption)
  
 brightnessLabel = tk.Label(primitive_frame, text="Brightness:")
@@ -291,10 +296,15 @@ pathLabel = tk.Label(output_frame, text="Path:")
 output_entry = tk.Entry(output_frame, width=40)
 browse2 = tk.Button(output_frame, text="Browse", command=output)
 
+
 extensionLabel = tk.Label(output_frame, text="Extension:")
+extension_OpMenu_width = len(max(EXTENSIONS,key=len))#length of largest item in EXTENSIONS
 selectedExtension = StringVar(master)
-selectedExtension.set(FILTERS[0])
-extensionOptions = OptionMenu(output_frame,selectedExtension, ".png", ".jpg", ".svg", ".gif")
+selectedExtension.set(EXTENSIONS[0])
+extensionOptions = OptionMenu(output_frame,selectedExtension,'.png',*EXTENSIONS)#minor change for option menu fill
+extensionOptions.config(width=extension_OpMenu_width)#set width to length of largest item
+
+
 
 begin_button = tk.Button(output_frame, text='Begin!',command=start)
 begin_button['font'] = headerFont

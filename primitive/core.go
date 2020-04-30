@@ -42,19 +42,24 @@ func copyLines(dst, src *image.RGBA, lines []Scanline) {
 	}
 }
 
+// Req. 4.4
+// This function takes the user's input of filter as well as the
+// rgb value of the current location and applies the filter of the
+// user's selection
 func applyFilter(filter, r, g, b, alpha int) Color {
+	// no filter
 	if filter == 0 {
 		return Color{r, g, b, alpha}
 	}
-
+	// applies gray scale filter
 	if filter == 1 {
 		return GrayScaleFilter(r, g, b, alpha)
 	}
-
+	// applies sepia filter
 	if filter == 2 {
 		return SepiaFilter(r, g, b, alpha)
 	}
-
+	// applies negative filter
 	if filter == 3 {
 		return NegativeFilter(r, g, b, alpha)
 	}
@@ -62,6 +67,10 @@ func applyFilter(filter, r, g, b, alpha int) Color {
 	return Color{r, g, b, alpha}
 }
 
+// GrayScale Filter
+// Req. 4.1
+// This Function takes the rgb values of the current location and converts
+// them into grayscale values
 func GrayScaleFilter(r, g, b, alpha int) Color {
 	newRed := int(0.21 * float64(r))
 	newGreen := int(0.72 * float64(g))
@@ -69,6 +78,10 @@ func GrayScaleFilter(r, g, b, alpha int) Color {
 	return Color{newRed, newGreen, newBlue, alpha}
 }
 
+// Sepia Filter
+// Req. 4.2
+// This Function takes the rgb values of the current location and converts
+// them into sepia values
 func SepiaFilter(r, g, b, alpha int) Color {
 	var tr = int(0.339*float64(r) + 0.768*float64(g) + 0.189*float64(b))
 	var tg = int(0.349*float64(r) + 0.686*float64(g) + 0.168*float64(b))
@@ -87,6 +100,10 @@ func SepiaFilter(r, g, b, alpha int) Color {
 	return Color{tr, tg, tb, alpha}
 }
 
+// NegativeFiler
+// Req. 4.3
+// This Function takes the rgb values of the current location and converts
+// them into negative values
 func NegativeFilter(r, g, b, alpha int) Color {
 	r = 255 - r
 	g = 255 - g

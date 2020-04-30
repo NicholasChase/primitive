@@ -71,6 +71,14 @@ func (i *shapeConfigArray) Set(value string) error {
 	return nil
 }
 
+// This function intitlializes variables which allows the flags to exist in the command line
+// Some of the new flags created are:
+// -f      -- filter     (Req. 4.0/4.4)
+// -b      -- brightness (Req. 4.5)
+// -blur   -- blur       (Req. 4.9)
+// -sat    -- saturation (Req. 4.6)
+// -rot    -- rotation   (Req. 4.7)
+// TODO: -con  -- contrast   (Req. 4.8)
 func init() {
 	flag.StringVar(&Input, "i", "", "input image path")
 	flag.Var(&Outputs, "o", "output image path")
@@ -202,10 +210,13 @@ func main() {
 						path = fmt.Sprintf(output, frame)
 					}
 					primitive.Log(1, "writing %s\n", path)
-
+					// Req. 4.5 Adjusts the Brightness of the produced image
 					adjustedImage := imaging.AdjustBrightness(model.Context.Image(), Brightness)
+					// Req. 4.9 Adjusts the Blur of the produced image
 					adjustedImage = imaging.Blur(adjustedImage, Blur)
+					// Req. 4.7 Allows the user to rotate the produced image
 					adjustedImage = imaging.Rotate(adjustedImage, Rotation, color.Black)
+					// Req. 4.8 Adjusts the saturation of the produced image
 					adjustedImage = imaging.AdjustSaturation(adjustedImage, SAT)
 					switch ext {
 					default:

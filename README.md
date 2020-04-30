@@ -72,7 +72,8 @@ This GIF demonstrates the iterative nature of the algorithm, attempting to minim
 Since the algorithm has a random component to it, you can run it against the same input image multiple times to bring life to a static image.
 
 ![Pencils](https://www.michaelfogleman.com/static/primitive/examples/pencils.gif)
-
+### How to run GoDocs
+Make sure that the package has import "go/doc". To run go docs type in godoc -http ":8080". Go docs runs on a local server on port 8080 and it is from here where you can see different versions of documentation. Documents tab holds the code as is and the Packages tabe holds the code with more of a design element. Navigate to the Packages tab go town to the primitive that is not a subdirectory. Click on this primitive and it will take you to the design documentation. 
 ### Creative Constraints
 
 If you're willing to dabble in the code, you can enforce constraints on the shapes to produce even more interesting results. Here, the rectangles are constrained to point toward the sun in this picture of a pyramid sunset.

@@ -21,7 +21,7 @@ master.title("Primitive")
 
 def help():
     messagebox.showinfo("Help!", "To begin first press the browse button under the picture path. Choose a photo that is of .jpg/png/gif type. Next find a output path. Ex. C:/Users/Desktop/output.jpg. In the primitive program, there are several different options to chose from. You can choose how transparent you want the picture to appear by changing the value in Alpha. You can rotate the image by changing the degrees in the rotation slot. You can apply a filter by selecting from the drop down menu. Once you are satisfied with the options presented, press the begin button and see your results.")
-
+## sets the input path
 def input():
     input_path = tk.filedialog.askopenfilename()
     global inputPath
@@ -33,7 +33,7 @@ def input():
         inputPath = input_path
     else:
         messagebox.showinfo("Error", "Wrong File Type")
-    
+## sets the output path    
 def output():
     path = tk.filedialog.askdirectory()
     global outputPath
@@ -42,7 +42,8 @@ def output():
     output_entry.insert(0, path)  # Insert the 'path'
     # Checks to see if output path contans file extension    
     outputPath = path
-        
+
+## Displays a preview window of the image Req 1.4      
 def displayImage():
     global outputPath
     print("THIS Is IDSPLAY " + outputPath)
@@ -61,7 +62,9 @@ def displayImage():
     l.image = img
     display.pack()
     l.pack(pady=5)
-    
+
+## Downloads and runs image through the program
+# based on a user provided URL Req 2.0
 def getUrlImage():
     global inputPath
     global outputPath
@@ -83,7 +86,7 @@ def getUrlImage():
         inputPath = outputPath
 
 
-
+## sets the filter to user selected option
 def getFilterOption(*args):
     global filter
     filter = selectedFilter.get()
@@ -98,7 +101,7 @@ def getFilterOption(*args):
     print(filter)
     return
     
-    
+ ## sets the mode to user selected mode   
 def getModeOption(*args):
     global mode
     mode = selectedMode.get()
@@ -122,11 +125,18 @@ def getModeOption(*args):
         mode = '8'
     return
 
+## TODO
+# Create contrast Req 1.7
+# def contrast():
+
+## TODO Create Blur Req 1.9
+# def blur():
 
 
+##gets called to make the photo
 def makePhoto():
-    # TODO:
-    # Get Filter, Brightness, and Rotation 
+
+    ## Get Filter, Brightness, and Rotation Req 1.6, 1.8,
     global filter
     global mode
     global outputPath
@@ -157,7 +167,7 @@ def start():
 def help():
 	messagebox.showinfo("Help!", "To begin first press the browse button under the picture path. Choose a photo that is of .jpg/png/gif type. Next find a output path. Ex. C:/Users/Desktop/output.jpg. In the primitive program, there are several different options to chose from. You can choose how transparent you want the picture to appear by changing the value in Alpha. You can rotate the image by changing the degrees in the rotation slot. You can apply a filter by selecting from the drop down menu. Once you are satisfied with the options presented, press the begin button and see your results.")
 
-# mode options
+## mode options Req 1.3
 MODES = [
 "Combo",
 "Triangle",
@@ -170,7 +180,8 @@ MODES = [
 "Polygon"
 ]
 
-#filter options
+## filter options
+# Req 2.4, 2.4.1, 2.4.2, 2.4.3, 2.4.4
 FILTERS = [
 "None",
 "Gray Scale",
@@ -178,7 +189,8 @@ FILTERS = [
 "Negative"
 ]
 
-#file extension options
+## file extension options
+# Req 2.1
 EXTENSIONS = [
 ".png",
 ".jpg",
@@ -200,24 +212,26 @@ output_frame.pack(side=tk.TOP)
 headerFont = font.Font(size=20)
 
 
-############################# help button #################################
+############################# help button  ################################# 
+## Req.1
 help_button = tk.Button(input_frame, text = "Help!", command = help)
 help_button.grid(row=0, column= 2 )
 
 
-############################ input image frame #############################
+############################ input image frame  #############################
 inputImageLabel = tk.Label(input_frame, text="Input Image")
 inputImageLabel['font'] = headerFont
 
 inputPathLabel = tk.Label(input_frame, text="Picture Path:")
 input_entry = tk.Entry(input_frame, width=40)
+##Req 1.5
 browse1 = tk.Button(input_frame, text="Browse", command=input)
 
 inputUrlLabel = tk.Label(input_frame, text="Picture URL:")
 imageURL = tk.Entry(input_frame, width=40)
 imageButton = tk.Button(input_frame, text="Download Image", command=getUrlImage)
  
-#insert into grid
+##insert into grid
 inputImageLabel.grid(row=0, column=1)
 inputPathLabel.grid(row=1, column=0, padx = 10, pady = 20)
 input_entry.grid(row=1, column=1)
@@ -236,6 +250,7 @@ modeOptions = OptionMenu(primitive_frame,selectedMode,'Combo',*MODES)#minor chan
 modeOptions.config(width=mode_OpMenu_width)#set width to length of largest item
 selectedMode.trace("w", getModeOption)
 
+## Req 1.2
 numberOfShapesLabel = tk.Label(primitive_frame, text="Number of Shapes:")
 numberOfShapesEntry = tk.Entry(primitive_frame, width=10)
 numberOfShapesEntry.insert(0, "100")
@@ -255,11 +270,12 @@ selectedFilter.set(FILTERS[0])
 filterOptions = OptionMenu(primitive_frame,selectedFilter,'None',*FILTERS)#minor change for option menu fill
 filterOptions.config(width=filt_OpMenu_width)#set width to length of largest item
 selectedFilter.trace("w", getFilterOption)
- 
+
+# Req 1.6 
 brightnessLabel = tk.Label(primitive_frame, text="Brightness:")
 brightnessSlider = tk.Scale(primitive_frame, from_=-100, to=100, orient=HORIZONTAL)
 
-#TODO: implement saturation slider
+#TODO: implement saturation slider Req 2.3
 
 #TODO: implement blur function
  
@@ -285,6 +301,7 @@ angleEntry.grid(row=2, column=4)
 
 
 ############################ output image frame #############################
+## Req 2.2
 outputImageLabel = tk.Label(output_frame, text="Output Image")
 outputImageLabel['font'] = headerFont
 

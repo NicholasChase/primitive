@@ -12,7 +12,7 @@ ok      primitive/primitive     0.003s
 To Run: install coverage module with pip. Run *coverage run pythonTest.py*. Then run *coverage report*. Had a problem running on linux but works on windows.
 ### Name                Stmts      Miss     Cover
 
-GUI.py                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;210       &nbsp;87       &nbsp;59
+GUI.py                210       &nbsp;&nbsp;&nbsp;87       &nbsp;59
 
 pythonTest.py         14         0        100%
 
